@@ -383,3 +383,9 @@
   tags:
     - snap
 
+- name: make sure apache2 not install
+  apt:
+    name: apache2
+    state: absent
+  ignore_errors: yes
+
