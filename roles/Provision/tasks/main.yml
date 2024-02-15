@@ -19,6 +19,9 @@
     - apt-transport-https
     - software-properties-common
     - net-tools
+    - jpegoptim
+    - optipng
+    - pngquant
     - git
     - python3-pip
     - snap
