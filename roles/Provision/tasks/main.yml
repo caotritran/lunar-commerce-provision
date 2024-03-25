@@ -295,14 +295,6 @@
         "[client] user=root password={{rand.stdout}}"
     dest: /home/deploy/.my.cnf
 
-- name: setup password policy mysql
-  shell: sudo echo "validate_password.policy=0" >> /etc/mysql/mysql.conf.d/mysqld.cnf
-  ignore_errors: yes
-
-- name: setup lenght mysql
-  shell: sudo echo "validate_password.length=8" >> /etc/mysql/mysql.conf.d/mysqld.cnf
-  ignore_errors: yes
-
 - name: start and enable mysql server
   systemd:
     name: mysql
