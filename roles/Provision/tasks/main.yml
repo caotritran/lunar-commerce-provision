@@ -305,6 +305,18 @@
   shell: sudo mysql -u root -e 'UPDATE mysql.user SET plugin="mysql_native_password" WHERE user="root" AND host="localhost"'
   ignore_errors: yes
 
+- name: install plugin validate password
+  shell: sudo mysql -u root -e "INSTALL PLUGIN validate_password SONAME 'validate_password.so';"
+  ignore_errors: yes
+
+- name: modify password policy to LOW
+  shell: sudo mysql -u root -e 'SET GLOBAL validate_password_policy=LOW;'
+  ignore_errors: yes
+
+- name: modify password length
+  shell: sudo mysql -u root -e 'SET GLOBAL validate_password_length=8;'
+  ignore_errors: yes
+
 - name: Flush Privileges
   shell: sudo mysql -u root -e 'FLUSH PRIVILEGES'
   ignore_errors: yes
