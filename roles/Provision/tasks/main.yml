@@ -8,6 +8,21 @@
     dest: /etc/sysctl.conf
     backup: yes
 
+- name: Add github.com configuration to ssh_config
+  lineinfile:
+    path: /etc/ssh/ssh_config
+    insertbefore: '^Host \*'
+    line: |
+      Host github.com
+       HostName github.com
+       IdentityFile ~/.ssh/deploy_rsa.pem
+
+- name: Copy deploy RSA key
+  copy:
+    src: /opt/key_deploy/id_rsa_deploy
+    dest: ~/.ssh/deploy_rsa.pem
+    mode: 0600
+
 - name: Install required packages
   apt:
     name: "{{ item }}"
