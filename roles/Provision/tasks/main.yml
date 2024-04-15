@@ -8,6 +8,12 @@
     dest: /etc/sysctl.conf
     backup: yes
 
+- name: Create ~/.ssh directory if it doesn't exist
+  file:
+    path: ~/.ssh
+    state: directory
+    mode: '0700'
+
 - name: Add github.com configuration to ssh_config
   lineinfile:
     path: /etc/ssh/ssh_config
