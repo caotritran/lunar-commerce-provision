@@ -52,14 +52,10 @@
   shell: sudo pip3 install pymysql
 
 - name: Add Nginx Mainline repository
-  apt_repository:
-    repo: 'ppa:ondrej/nginx-mainline'
-    state: present
+  shell: echo "yes" | sudo add-apt-repository ppa:ondrej/nginx-mainline
 
 - name: Add php repository
-  apt_repository:
-    repo: 'ppa:ondrej/php'
-    state: present
+  shell: echo "yes" | sudo add-apt-repository ppa:ondrej/php
 
 - name: install nginx
   apt:
