@@ -349,6 +349,16 @@
   become_user: deploy
   ignore_errors: yes
 
+- name: Update MySQL configuration file
+  hosts: your_mysql_servers
+  become: true
+  tasks:
+    - name: Add validate_password_policy line to mysqld.cnf
+      lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        insertafter: '^\\[mysqld\\]'
+        line: 'validate_password_policy = LOW'
+
 - name: add ssh config for git pem
   blockinfile:
     path: /etc/ssh/ssh_config
